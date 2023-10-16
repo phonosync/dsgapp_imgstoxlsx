@@ -8,7 +8,7 @@ import openpyxl
 
 output_fn = None
 
-st.title("Convert images to xlsx")
+st.title("Extrahierung der Datenmatrix aus Digitalen Bildern")
 
 st.write('''The pixel intensities from the image file(s) are extracted into an xlsx-file. If a single image is provided, a separate 
          worksheet is created for each channel with the corresponding image height x width pixel intensities in a matrix. Greyscale
