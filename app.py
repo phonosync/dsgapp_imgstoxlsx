@@ -10,25 +10,25 @@ output_fn = None
 
 st.title("Extrahierung der Datenmatrix aus Digitalen Bildern")
 
-st.write('''The pixel intensities from the image file(s) are extracted into an xlsx-file. If a single image is provided, a separate 
-         worksheet is created for each channel with the corresponding image height x width pixel intensities in a matrix. Greyscale
-         images result into one worksheet only. \\
-         If multiple image files are uploaded, only one sheet is created with all the pixel intensities for the images 
-         (and their color channels) reshaped into individual rows indexed by the original filenames. Attention: Unequal pixel
-         dimensions of the images leads to inconsistent number of columns in the excel sheet.
-         ''')
+st.write('''Die Pixel-Intensitäten werden aus den Bild-Dateien in eine xlsx-Datei extrahiert. Falls ein einzelnes Bild
+         hochgeladen wird, wird für jeden Farbkanal ein separates Worksheet mit der entsprechenden Pixel-Matrix an
+         Intensitätswerten Bild-Höhe x Breite  erstellt. Graustufen-Bilder ergeben ein einzelnes Worksheet.\\
+         Wenn mehrere Bild-Dateien hochgeladen werden, wird nur ein einzelnes Sheet erstellt. Alle Pixel-Intensitäten
+         der der einzelnen Bilder (und deren Farbkanäle) werden in einzelne Zeilen umgeordnet und mit den ursprünglichen 
+         Dateinamen indiziert. Achtung: Ungleiche Pixel-Dimensionen der Bilder führen to einer inkonsistenten Anzahl von 
+         Spalten im Excel-Sheet.''')
 
-to_greyscale = st.checkbox('Convert to greyscale')
+to_greyscale = st.checkbox('In Graustufen kovertieren')
 
 # sheet_per_channel = st.checkbox('arrays of multi-channel input images will be split into separate worksheets of the resulting Excel (one worksheet per channel)')
 
 # reshape_to_row = st.checkbox('Reshape the image array to one row in resulting xlsx-Worksheet. Automatic behaviour for multi-images upload')
 
-scale_to_width = st.number_input('Scale to width', value=0)
-scale_to_height = st.number_input('Scale to height', value=0)
+scale_to_width = st.number_input('Auf Breite skalieren', value=0)
+scale_to_height = st.number_input('Auf Höhe skalieren', value=0)
 
 
-uploaded_files = st.file_uploader("Choose one or more image files", accept_multiple_files=True)
+uploaded_files = st.file_uploader("Wähle eine oder mehrere Bilddatei(en)", accept_multiple_files=True)
 if len(uploaded_files) > 1:
     reshape_to_row = True
 
@@ -110,7 +110,7 @@ if len(uploaded_files) > 1:
 
 if output_fn:
     st.download_button(
-            label="Download pixel intensities as xlsx",
+            label="Pixel-Intensitäten als xlsx-Datei herunterladen",
             data=buffer,
             file_name=output_fn,
             mime='application/vnd.ms-excel',
